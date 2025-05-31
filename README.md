@@ -41,7 +41,7 @@ Terminalde graduationProjectBackend dizinine girin:
 
 git clone https://github.com/Bilalng/Yerel-Yonetimler-Talep-Takip-ve-Yonetim-Platformu.git
 
-cd graduationproject
+cd graduationProjectBackend
 
 ```
 
