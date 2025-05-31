@@ -62,19 +62,12 @@ cp .env.example .env
 php artisan key:generate
 
 ```
-Veritabanı ayarlarını yapıp migrasyonları çalıştırın:
-
-```bash
-
-php artisan migrate
-php artisan db:seed
-php artisan db:seed --class=DummyDataSeeder
-
-```
 
 Uygulamayı başlatın:
 
 ```bash
+
+php artisan optimize
 
 php artisan serve --host=0.0.0.0 --port=8000
 
