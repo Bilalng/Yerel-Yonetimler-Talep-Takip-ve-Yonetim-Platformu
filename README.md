@@ -41,24 +41,46 @@ Terminalde graduationProjectBackend dizinine girin:
 
 cd graduationproject
 
+```
+
 Gerekli bağımlılıkları yükleyin:
+
+```bash
 
 composer install
 npm install
 
+```
+
 .env dosyanızı oluşturun ve yapılandırın:
+
+```bash
+
 cp .env.example .env
 php artisan key:generate
 
+```
 Veritabanı ayarlarını yapıp migrasyonları çalıştırın:
+
+```bash
+
 php artisan migrate
 php artisan db:seed
 php artisan db:seed --class=DummyDataSeeder
 
+```
+
 Uygulamayı başlatın:
+
+```bash
+
 php artisan serve --host=0.0.0.0 --port=8000
 
+```
 Ayrı bir terminalde frontend (Filament, vs.) assetlerini derleyin:
+
+```bash
+
 npm run dev
 # veya production için
 npm run build
@@ -67,15 +89,24 @@ npm run build
 
 ### 2. React Native Mobile Uygulama
 
+Terminalde mobil dizine girin:
+
 ```bash
 
-Terminalde mobil dizine girin:
 cd graduationMobileProject
 
+```
 Bağımlılıkları yükleyin:
+
+```bash
+
 npm install
 
+```
 Uygulamayı çalıştırın (Expo örneği):
+
+```bash
+
 npx expo start
 
 ```
@@ -99,9 +130,9 @@ Laravel'de Jetstream yerine Fortify ve Filament admin paneli kullanılmaktadır.
 
 ![Ekran Görüntüsü 4](graduationMobileProject/assets/images/istatistik.png)
 
-![Ekran Görüntüsü 5](graduationMobileProject/assets/images/AndroidTaleplerim.png)
+![Ekran Görüntüsü 5](graduationMobileProject/assets/images/AndroidTaleplerim.jpeg)
 
-![Ekran Görüntüsü 6](graduationMobileProject/assets/images/androidOnaylananTaleple.png)
+![Ekran Görüntüsü 6](graduationMobileProject/assets/images/androidOnaylananTaleple.jpeg)
 
 
 
