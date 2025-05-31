@@ -65,12 +65,9 @@ php artisan key:generate
 .env dosyası yapılandırma.
 
 ```bash
-
----
 APP_LOCALE=tr
 APP_FALLBACK_LOCALE=tr_TR
 APP_FAKER_LOCALE=tr_Tr
----
 ```
 Linux İçin
 ```
