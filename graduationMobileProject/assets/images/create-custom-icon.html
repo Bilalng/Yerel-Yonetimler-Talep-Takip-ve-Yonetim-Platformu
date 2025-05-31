@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Özel App Icon Oluşturucu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1, h2 {
+      color: #6750A4;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .preview {
+      width: 256px;
+      height: 256px;
+      border-radius: 50%;
+      margin: 20px 0;
+      overflow: hidden;
+      border: 2px solid #ddd;
+      position: relative;
+    }
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .splash-preview {
+      width: 300px;
+      height: 600px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+    .icon-preview {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    .icon-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .splash-text {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .splash-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6750A4;
+      margin-bottom: 8px;
+    }
+    .splash-subtitle {
+      font-size: 16px;
+      color: #6750A4;
+      opacity: 0.8;
+    }
+    button {
+      background-color: #6750A4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .file-input {
+      display: none;
+    }
+    .upload-btn {
+      background-color: #4CAF50;
+      display: inline-block;
+    }
+    .instructions {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .instructions h2 {
+      color: #6750A4;
+      text-align: left;
+    }
+    .instructions ol {
+      padding-left: 20px;
+    }
+    .instructions li {
+      margin-bottom: 10px;
+    }
+    canvas {
+      display: none;
+    }
+    .color-picker {
+      margin: 20px 0;
+    }
+    .color-input {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Özel App Icon Oluşturucu</h1>
+  
+  <div class="container">
+    <h2>Uygulama İconu</h2>
+    <div class="preview" id="iconPreview">
+      <img id="previewImage" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6TTcgN2g3djJIN1Y3em0wIDRoN3YySDd2LTJ6bTAgNGg3djJIN3YtMnptMTAgMmgtMnYtMmgydjJ6bTAtNGgtMnYtMmgydjJ6bTAtNGgtMlY3aDJ2MnoiLz48L3N2Zz4=" alt="Preview">
+    </div>
+    
+    <div class="color-picker">
+      <label for="backgroundColor">Arkaplan Rengi:</label>
+      <input type="color" id="backgroundColor" class="color-input" value="#6750A4">
+    </div>
+    
+    <label for="imageUpload" class="upload-btn button">Resim Seç</label>
+    <input type="file" id="imageUpload" class="file-input" accept="image/*">
+    
+    <div class="buttons" style="margin-top: 20px;">
+      <button onclick="downloadIcon('icon.png')">İconu İndir (1024x1024)</button>
+      <button onclick="downloadIcon('adaptive-icon.png')">Adaptive İconu İndir (1024x1024)</button>
+      <button onclick="downloadIcon('splash-icon.png', 200)">Splash İconu İndir (200x200)</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>Splash Screen</h2>
+    <div class="splash-preview" id="splashPreview">
+      <div class="icon-preview">
+        <img id="splashIconImage" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6TTcgN2g3djJIN1Y3em0wIDRoN3YySDd2LTJ6bTAgNGg3djJIN3YtMnptMTAgMmgtMnYtMmgydjJ6bTAtNGgtMnYtMmgydjJ6bTAtNGgtMlY3aDJ2MnoiLz48L3N2Zz4=" alt="Splash Icon">
+      </div>
+      <div class="splash-text">
+        <div class="splash-title">Talep Yönetim</div>
+        <div class="splash-subtitle">Belediye Talep Sistemi</div>
+      </div>
+    </div>
+    <button onclick="downloadSplash()">Splash Ekranı İndir (1242x2688)</button>
+  </div>
+  
+  <div class="instructions">
+    <h2>Talimatlar</h2>
+    <ol>
+      <li>Yukarıdaki "Resim Seç" düğmesini kullanarak kendi resminizi yükleyin</li>
+      <li>Arkaplan rengini seçmek için renk seçiciyi kullanın</li>
+      <li>Düğmeleri kullanarak gerekli icon dosyalarını indirin</li>
+      <li>İndirilen dosyaları projenizin <code>assets/images/</code> dizinine yerleştirin</li>
+      <li>Dosya isimlerinin <code>app.json</code> dosyasındaki isimlerle tam olarak eşleştiğinden emin olun</li>
+      <li>Uygulamanızı yeniden derleyerek yeni ikonları kullanın</li>
+    </ol>
+  </div>
+  
+  <canvas id="canvas"></canvas>
+  
+  <script>
+    // Renk ve resim değişkenleri
+    let backgroundColor = '#6750A4';
+    let uploadedImage = null;
+    
+    // DOM elementleri
+    const imageUpload = document.getElementById('imageUpload');
+    const previewImage = document.getElementById('previewImage');
+    const splashIconImage = document.getElementById('splashIconImage');
+    const colorPicker = document.getElementById('backgroundColor');
+    
+    // Renk değişimi
+    colorPicker.addEventListener('input', function(e) {
+      backgroundColor = e.target.value;
+      updatePreview();
+    });
+    
+    // Resim yükleme
+    imageUpload.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          uploadedImage = event.target.result;
+          updatePreview();
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Önizlemeyi güncelle
+    function updatePreview() {
+      // Rengi güncelle
+      document.getElementById('iconPreview').style.backgroundColor = backgroundColor;
+      
+      // Eğer resim yüklendiyse göster
+      if (uploadedImage) {
+        previewImage.src = uploadedImage;
+        splashIconImage.src = uploadedImage;
+      }
+    }
+    
+    // Icon indirme fonksiyonu
+    function downloadIcon(filename, size = 1024) {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Canvas boyutunu ayarla
+      canvas.width = size;
+      canvas.height = size;
+      
+      // Daire arka planı çiz
+      ctx.fillStyle = backgroundColor;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Eğer resim yüklendiyse onu çiz
+      if (uploadedImage) {
+        const img = new Image();
+        img.onload = function() {
+          // Resmi daire içine sığdır
+          const aspectRatio = img.width / img.height;
+          let drawWidth, drawHeight, drawX, drawY;
+          
+          if (aspectRatio > 1) {
+            // Resim yatay
+            drawHeight = size;
+            drawWidth = size * aspectRatio;
+            drawX = (size - drawWidth) / 2;
+            drawY = 0;
+          } else {
+            // Resim dikey
+            drawWidth = size;
+            drawHeight = size / aspectRatio;
+            drawX = 0;
+            drawY = (size - drawHeight) / 2;
+          }
+          
+          // Resmi çiz
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+          ctx.restore();
+          
+          // Linki oluştur ve indir
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        };
+        img.src = uploadedImage;
+      } else {
+        // Varsayılan icon içeriği
+        ctx.fillStyle = 'white';
+        const iconSize = size * 0.6;
+        const x = (size - iconSize) / 2;
+        const y = (size - iconSize) / 2;
+        
+        // T şekli çiz
+        ctx.fillRect(x + iconSize/4, y, iconSize/2, iconSize/4);
+        ctx.fillRect(x + iconSize/2 - iconSize/8, y + iconSize/4, iconSize/4, iconSize * 0.75);
+        
+        // Yatay çizgiler
+        ctx.fillRect(x, y + iconSize/2, iconSize/2, iconSize/8);
+        ctx.fillRect(x, y + iconSize * 0.75, iconSize/2, iconSize/8);
+        
+        // İndirme linkini oluştur
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+    }
+    
+    // Splash ekranı indirme fonksiyonu
+    function downloadSplash() {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Canvas boyutunu ayarla (tipik iPhone splash boyutları)
+      canvas.width = 1242;
+      canvas.height = 2688;
+      
+      // Beyaz arka planı çiz
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Icon çiz
+      const iconSize = 300;
+      const iconX = canvas.width/2 - iconSize/2;
+      const iconY = canvas.height/2 - 200 - iconSize/2;
+      
+      ctx.fillStyle = backgroundColor;
+      ctx.beginPath();
+      ctx.arc(canvas.width/2, canvas.height/2 - 200, iconSize/2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Eğer resim yüklendiyse onu çiz
+      if (uploadedImage) {
+        const img = new Image();
+        img.onload = function() {
+          // Resmi daire içine sığdır
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(canvas.width/2, canvas.height/2 - 200, iconSize/2, 0, Math.PI * 2);
+          ctx.clip();
+          
+          const aspectRatio = img.width / img.height;
+          let drawWidth, drawHeight, drawX, drawY;
+          
+          if (aspectRatio > 1) {
+            // Resim yatay
+            drawHeight = iconSize;
+            drawWidth = iconSize * aspectRatio;
+            drawX = canvas.width/2 - drawWidth/2;
+            drawY = canvas.height/2 - 200 - iconSize/2;
+          } else {
+            // Resim dikey
+            drawWidth = iconSize;
+            drawHeight = iconSize / aspectRatio;
+            drawX = canvas.width/2 - iconSize/2;
+            drawY = canvas.height/2 - 200 - drawHeight/2;
+          }
+          
+          ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+          ctx.restore();
+          
+          // Metni çiz
+          drawSplashText();
+          
+          // İndirme linkini oluştur
+          const link = document.createElement('a');
+          link.download = 'splash.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        };
+        img.src = uploadedImage;
+      } else {
+        // Varsayılan icon içeriği
+        ctx.fillStyle = 'white';
+        const innerIconSize = iconSize * 0.6;
+        const innerX = canvas.width/2 - innerIconSize/2;
+        const innerY = canvas.height/2 - 200 - innerIconSize/2;
+        
+        // T şekli çiz
+        ctx.fillRect(innerX + innerIconSize/4, innerY, innerIconSize/2, innerIconSize/4);
+        ctx.fillRect(innerX + innerIconSize/2 - innerIconSize/8, innerY + innerIconSize/4, innerIconSize/4, innerIconSize * 0.75);
+        
+        // Yatay çizgiler
+        ctx.fillRect(innerX, innerY + innerIconSize/2, innerIconSize/2, innerIconSize/8);
+        ctx.fillRect(innerX, innerY + innerIconSize * 0.75, innerIconSize/2, innerIconSize/8);
+        
+        // Metni çiz
+        drawSplashText();
+        
+        // İndirme linkini oluştur
+        const link = document.createElement('a');
+        link.download = 'splash.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+    }
+    
+    function drawSplashText() {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      ctx.fillStyle = backgroundColor;
+      ctx.font = 'bold 60px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Talep Yönetim', canvas.width/2, canvas.height/2 + 100);
+      
+      ctx.font = '36px Arial';
+      ctx.fillText('Belediye Talep Sistemi', canvas.width/2, canvas.height/2 + 160);
+    }
+  </script>
+</body>
+</html> 
