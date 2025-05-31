@@ -5,7 +5,7 @@ Bu proje, Laravel tabanlı bir **back-end** ve React Native tabanlı bir **mobil
 ---
 
 ## Proje Yapısı
-/
+
 ├── graduationproject/ → Laravel Back-End
 └── graduationMobileProject/ → React Native Mobile Uygulama
 └── graduationproject.sql/ → SQL 
