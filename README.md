@@ -136,6 +136,13 @@ node_modules ve vendor klasörleri versiyon kontrolüne dahil edilmemiştir. Pro
 
 Laravel'de Jetstream yerine Fortify ve Filament admin paneli kullanılmaktadır.
 
+Kullanıcı Örnek:
+admin@gmail.com 
+123456789
+
+bilal@gmail.com 
+123456789
+
 
 ## Ekran Görüntüleri
 
