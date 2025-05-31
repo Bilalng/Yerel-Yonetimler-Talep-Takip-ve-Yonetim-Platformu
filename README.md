@@ -73,27 +73,20 @@ APP_FAKER_LOCALE=tr_Tr
 ---
 ```
 Linux İçin
-
 ```
 ip addr show
-
 ```
 Windows İçin
 Başlat Menüsü → cmd yazıp Komut İstemi’ni açın.
 ```
 ipconfig
-IPv4 Address
+IPv4 Address = .........
 ```
-
 APP_URL alanını, uygulamanızı çalıştıracağınız makinenin IP adresi veya domain adı ile değiştirin. Örneğin:
-
-
 ```
-
 ---
 APP_URL=http://<IP_ADRESİNİZ>:8000
 ---
-
 ```
 Uygulamayı başlatın:
 
