@@ -39,7 +39,7 @@ Terminalde graduationProjectBackend dizinine girin:
 
 ```bash
 
-git clone https://github.com/kullaniciadi/Yerel-Yonetimler-Talep-Takip-ve-Yonetim-Platformu.git
+git clone https://github.com/Bilalng/Yerel-Yonetimler-Talep-Takip-ve-Yonetim-Platformu.git
 
 cd graduationproject
 
