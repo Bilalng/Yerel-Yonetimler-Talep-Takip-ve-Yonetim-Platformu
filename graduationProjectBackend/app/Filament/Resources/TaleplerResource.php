@@ -147,7 +147,8 @@ class TaleplerResource extends Resource
                     ->collapsible()
                     ->columns(2)
                 ,
-
+                Forms\Components\FileUpload::make('photo')
+                    ->label('Fotoğraf')
             ]);
 
     }
